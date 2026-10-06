@@ -25,55 +25,89 @@ public class JuegoControlador {
     private void cargarCartasIniciales() {
 
         mazo.agregarCarta(new CartaCatedratico(
-                1, "Profe de POO", 3,
+                1,
+                "Profe de POO",
+                3,
                 "Especialista en programacion orientada a objetos.",
-                "Ciencias de la Computacion", 4, 3));
+                "Ciencias de la Computacion",
+                4,
+                3));
 
         mazo.agregarCarta(new CartaCatedratico(
-                2, "Profe de Calculo", 4,
+                2,
+                "Profe de Calculo",
+                4,
                 "Domina derivadas e integrales.",
-                "Matematica", 5, 2));
+                "Matematica",
+                5,
+                2));
 
         mazo.agregarCarta(new CartaCatedratico(
-                3, "Profe de Fisica", 3,
+                3,
+                "Profe de Fisica",
+                3,
                 "Experto en las leyes del universo.",
-                "Fisica", 3, 4));
+                "Fisica",
+                3,
+                4));
 
         mazo.agregarCarta(new CartaCurso(
-                4, "Programacion Orientada a Objetos", 4,
+                4,
+                "Programacion Orientada a Objetos",
+                4,
                 "Curso de programacion utilizando objetos.",
-                4, 5));
+                4,
+                5));
 
         mazo.agregarCarta(new CartaCurso(
-                5, "Calculo", 3,
+                5,
+                "Calculo",
+                3,
                 "Curso de fundamentos matematicos.",
-                4, 4));
+                4,
+                4));
 
         mazo.agregarCarta(new CartaCurso(
-                6, "Fisica", 3,
+                6,
+                "Fisica",
+                3,
                 "Curso sobre fenomenos fisicos.",
-                4, 4));
+                4,
+                4));
 
         mazo.agregarCarta(new CartaCurso(
-                7, "Algoritmos y Estructuras de Datos", 5,
+                7,
+                "Algoritmos y Estructuras de Datos",
+                5,
                 "Curso para desarrollar soluciones eficientes.",
-                4, 5));
+                4,
+                5));
 
         mazo.agregarCarta(new CartaEventoCampus(
-                8, "Semana de Parciales", 2,
+                8,
+                "Semana de Parciales",
+                2,
                 "Una semana llena de evaluaciones.",
-                "Todos los estudiantes sienten la presion de los parciales."));
+                "Todos los estudiantes sienten la presion de los parciales.",
+                0));
 
         mazo.agregarCarta(new CartaEventoCampus(
-                9, "Feria de Clubes", 1,
+                9,
+                "Feria de Clubes",
+                1,
                 "Los clubes presentan sus actividades.",
-                "El ambiente universitario aumenta la motivacion."));
+                "El ambiente universitario aumenta la motivacion.",
+                3));
 
         mazo.agregarCarta(new CartaEventoCampus(
-                10, "Semana de Proyectos", 4,
+                10,
+                "Semana de Proyectos",
+                4,
                 "Todos intentan terminar sus proyectos.",
-                "Aumenta la carga academica en el campus."));
+                "Aumenta la carga academica en el campus.",
+                1));
 
+        // Mezcla el catalogo inicial para obtener un orden aleatorio.
         Collections.shuffle(mazo.getCartas());
     }
 
@@ -89,6 +123,8 @@ public class JuegoControlador {
             switch (opcion) {
 
                 case 1:
+                    vista.mostrarMensaje(
+                        "Total de cartas en el mazo: " + mazo.cantidadCartas());
                     vista.mostrarCartas(mazo.getCartas());
                     break;
 
@@ -113,7 +149,8 @@ public class JuegoControlador {
 
                 case 6:
                     continuar = false;
-                    vista.mostrarMensaje("Gracias por jugar UVG Card Battle.");
+                    vista.mostrarMensaje(
+                            "Gracias por jugar UVG Card Battle.");
                     break;
 
                 default:
@@ -125,7 +162,8 @@ public class JuegoControlador {
 
     private void buscarPorId() {
 
-        int id = vista.leerEntero("Ingrese el ID de la carta: ");
+        int id = vista.leerEntero(
+                "Ingrese el ID de la carta: ");
 
         Carta carta = mazo.buscarCarta(id);
 
@@ -145,7 +183,8 @@ public class JuegoControlador {
     private void iniciarPartida() {
 
         if (mazo.cantidadCartas() == 0) {
-            vista.mostrarMensaje("No hay cartas disponibles.");
+            vista.mostrarMensaje(
+                    "No hay cartas disponibles.");
             return;
         }
 
@@ -154,13 +193,18 @@ public class JuegoControlador {
 
         Jugador jugador = new Jugador(nombre, 10);
 
-        ArrayList<Carta> cartasDisponibles
-                = new ArrayList<>(mazo.getCartas());
+        ArrayList<Carta> cartasDisponibles =
+                new ArrayList<>(mazo.getCartas());
 
         Collections.shuffle(cartasDisponibles);
 
-        for (int i = 0; i < 3 && !cartasDisponibles.isEmpty(); i++) {
-            jugador.tomarCarta(cartasDisponibles.remove(0));
+        // El jugador comienza con tres cartas.
+        for (int i = 0;
+                i < 3 && !cartasDisponibles.isEmpty();
+                i++) {
+
+            jugador.tomarCarta(
+                    cartasDisponibles.remove(0));
         }
 
         boolean partidaActiva = true;
@@ -180,21 +224,29 @@ public class JuegoControlador {
                     break;
 
                 case 2:
-                    tomarCarta(jugador, cartasDisponibles);
+                    tomarCarta(
+                            jugador,
+                            cartasDisponibles);
                     break;
 
                 case 3:
-                    vista.mostrarMensaje(jugador.pasarTurno());
+                    vista.mostrarMensaje(
+                            jugador.pasarTurno());
+
+                    // Al pasar el turno se recupera
+                    // un punto de energia.
                     jugador.agregarEnergia(1);
                     break;
 
                 case 4:
                     partidaActiva = false;
-                    vista.mostrarMensaje("Partida terminada.");
+                    vista.mostrarMensaje(
+                            "Partida terminada.");
                     break;
 
                 default:
-                    vista.mostrarMensaje("Opcion no valida.");
+                    vista.mostrarMensaje(
+                            "Opcion no valida.");
                     break;
             }
         }
@@ -203,33 +255,41 @@ public class JuegoControlador {
     private void usarCarta(Jugador jugador) {
 
         if (jugador.getMano().isEmpty()) {
+
             vista.mostrarMensaje(
                     "No tienes cartas disponibles para jugar.");
+
             return;
         }
 
         int numeroCarta = vista.leerEntero(
                 "Seleccione el numero de la carta: ");
 
-        String resultado = jugador.usarCarta(numeroCarta - 1);
+        String resultado =
+                jugador.usarCarta(numeroCarta - 1);
 
         vista.mostrarMensaje(resultado);
     }
 
     private void tomarCarta(
-            Jugador jugador, ArrayList<Carta> cartasDisponibles) {
+            Jugador jugador,
+            ArrayList<Carta> cartasDisponibles) {
 
         if (cartasDisponibles.isEmpty()) {
+
             vista.mostrarMensaje(
                     "No quedan cartas disponibles para tomar.");
+
             return;
         }
 
-        Carta carta = cartasDisponibles.remove(0);
+        Carta carta =
+                cartasDisponibles.remove(0);
 
         jugador.tomarCarta(carta);
 
         vista.mostrarMensaje(
-                "Tomaste la carta: " + carta.getNombre());
+                "Tomaste la carta: "
+                        + carta.getNombre());
     }
 }

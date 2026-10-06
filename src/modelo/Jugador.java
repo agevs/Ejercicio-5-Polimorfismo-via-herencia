@@ -52,9 +52,18 @@ public class Jugador {
             return "No tienes suficiente energia para jugar esta carta.";
         }
 
+        // Se descuenta el costo de energia de la carta.
         energia -= carta.getCostoEnergia();
+
+        // Algunos eventos pueden otorgar energia al jugador.
+        if (carta instanceof CartaEventoCampus) {
+            CartaEventoCampus evento = (CartaEventoCampus) carta;
+            energia += evento.getEnergiaOtorgada();
+        }
+
         mano.remove(indice);
 
+        // Polimorfismo: se ejecuta jugarCarta() segun el tipo real.
         return carta.jugarCarta();
     }
 
