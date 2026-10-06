@@ -28,7 +28,8 @@ public class CartaEventoCampus extends Carta {
     @Override
     public String toString() {
         return super.toString()
-                + " | Tipo: Evento Campus"
-                + " | Efecto: " + efecto;
+                + "\nTipo: Evento Campus"
+                + "\nEfecto: " + efecto
+                + "\n---";
     }
 }

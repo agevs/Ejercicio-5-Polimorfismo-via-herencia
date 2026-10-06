@@ -40,8 +40,9 @@ public class CartaCurso extends Carta {
     @Override
     public String toString() {
         return super.toString()
-                + " | Tipo: Curso"
-                + " | Creditos: " + creditos
-                + " | Nivel de dificultad: " + nivelDificultad;
+                + "\nTipo: Curso"
+                + "\nCreditos: " + creditos
+                + "\nNivel de dificultad: " + nivelDificultad
+                + "\n--";
     }
 }

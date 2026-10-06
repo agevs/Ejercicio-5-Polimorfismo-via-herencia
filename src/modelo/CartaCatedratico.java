@@ -51,9 +51,10 @@ public class CartaCatedratico extends Carta {
     @Override
     public String toString() {
         return super.toString()
-                + " | Tipo: Catedratico"
-                + " | Departamento: " + departamento
-                + " | Llamadas de atencion: " + llamadasAtencion
-                + " | Tiempo de atencion: " + tiempoAtencion;
+                + "\nTipo: Catedratico"
+                + "\nDepartamento: " + departamento
+                + "\nLlamadas de atencion: " + llamadasAtencion
+                + "\nTiempo de atencion: " + tiempoAtencion
+                + "\n--";
     }
 }

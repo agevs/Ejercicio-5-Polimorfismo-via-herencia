@@ -48,10 +48,10 @@ public abstract class Carta {
 
     @Override
     public String toString() {
-        return "ID: " + id
-                + " | Nombre: " + nombre
-                + " | Costo de energia: " + costoEnergia
-                + " | Descripcion: " + descripcion;
+        return "\nID: " + id
+                + "\nNombre: " + nombre
+                + "\nCosto de energia: " + costoEnergia
+                + "\nDescripcion: " + descripcion;
     }
 
     @Override
